@@ -9,5 +9,11 @@ public class InvoiceGenerator {
 		double totalFare = distance * MIN_COST_PER_KILOMETER + time * COST_PER_TIME;
 		return Math.max(totalFare, MINIMUM_COST);
 	}
-
+	public double calculateFare(Ride[] rides) {
+		double totalFare = 0;
+		for(Ride ride : rides) {
+			totalFare += this.calculateFare(ride.getDistance(),ride.getTime());
+		}
+		return totalFare;
+	}
 }
