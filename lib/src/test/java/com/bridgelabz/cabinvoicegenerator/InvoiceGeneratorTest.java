@@ -41,5 +41,14 @@ public class InvoiceGeneratorTest {
 		InvoiceSummary expectedSummary = new InvoiceSummary(2, 30);
 		Assert.assertEquals(expectedSummary.getAverageFare(), summary.getAverageFare(),0.0);
 	}
+	@Test
+	public void givenUserID_ShouldReturnInvoiceSummary() {
+		String userId = "U001";
+		invoiceGenerator.addUserRide(userId,new Ride(10, 3));
+		invoiceGenerator.addUserRide(userId,new Ride(15, 2));
+		InvoiceSummary invoiceSummary = invoiceGenerator.getSummaryByUserId(userId);
+		InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2,255);
+		Assert.assertEquals(expectedInvoiceSummary.getAverageFare(), invoiceSummary.getAverageFare(),0.0);
+	}
 
 }
