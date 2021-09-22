@@ -32,4 +32,14 @@ public class InvoiceGeneratorTest {
 		double fare  = invoiceGenerator.calculateFare(rides);
 		Assert.assertEquals(309,fare,0.0);
 	}
+	@Test
+	public void givenMultipleRides_ShouldReturnInvoiceSummary() {
+
+		Ride[] rides = {new Ride(2.0, 5), 
+						new Ride(0.1, 1)};
+		InvoiceSummary summary = invoiceGenerator.getSummary(rides);
+		InvoiceSummary expectedSummary = new InvoiceSummary(2, 30);
+		Assert.assertEquals(expectedSummary.getAverageFare(), summary.getAverageFare(),0.0);
+	}
+
 }
